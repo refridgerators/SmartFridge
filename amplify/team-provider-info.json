@@ -1,0 +1,19 @@
+{
+    "yard": {
+        "awscloudformation": {
+            "AuthRoleName": "smartfridge3-20190309160027-authRole",
+            "UnauthRoleArn": "arn:aws:iam::563298763385:role/smartfridge3-20190309160027-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::563298763385:role/smartfridge3-20190309160027-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "smartfridge3-20190309160027-deployment",
+            "UnauthRoleName": "smartfridge3-20190309160027-unauthRole",
+            "StackName": "smartfridge3-20190309160027",
+            "StackId": "arn:aws:cloudformation:us-east-1:563298763385:stack/smartfridge3-20190309160027/5d35a410-42ae-11e9-b606-0a20b68b404c"
+        },
+        "categories": {
+            "auth": {
+                "cognito25b7f273": {}
+            }
+        }
+    }
+}

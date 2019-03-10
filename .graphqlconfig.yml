@@ -1,0 +1,16 @@
+projects:
+  AmplifyAndroid:
+    schemaPath: app\src\main\graphql\schema.json
+    includes:
+      - ''
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: ''
+        generatedFileName: ''
+        docsFilePath: app\src\main\graphql\com\amazonaws\amplify\generated\graphql
+        graphQLApiId: udoyabqwhzbklicqjdgrf7p2nq
+      endpoints:
+        prod: >-
+          https://mgd5ml6wfvdjxgf35h7fvjq2g4.appsync-api.us-east-1.amazonaws.com/graphql
