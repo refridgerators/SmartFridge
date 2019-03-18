@@ -9,6 +9,8 @@ import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+import com.amazonaws.mobileconnectors.appsync.sigv4.CognitoUserPoolsAuthProvider;
+import com.amazonaws.regions.Regions;
 import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.exception.ApolloException;
 
@@ -21,24 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*mAWSAppSyncClient = AWSAppSyncClient.builder()
+        mAWSAppSyncClient = AWSAppSyncClient.builder()
                 .context(getApplicationContext())
                 .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-                .build();*/
-
-        AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-
+                .cognitoUserPoolsAuthProvider(new CognitoUserPoolsAuthProvider() {
                     @Override
-                    public void onResult(UserStateDetails userStateDetails) {
-                        Log.i("INIT", "onResult: " + userStateDetails.getUserState());
+                    public String getLatestAuthToken() {
+                        try {
+                            return AWSMobileClient.getInstance().getTokens().getIdToken().getTokenString();
+                        } catch (Exception e){
+                            Log.e("APPSYNC_ERROR", e.getLocalizedMessage());
+                            return e.getLocalizedMessage();
+                        }
                     }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Log.e("INIT", "Initialization error.", e);
-                    }
-                }
-        );
+                }).build();
     }
 
 }
